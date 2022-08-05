@@ -20,27 +20,29 @@ export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
   variant: 'primary',
-  label: 'Button',
+  label: 'resetar senha',
 };
 
 export const Text = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Text.args = {
   variant: 'text',
-  label: 'Button',
+  label: 'resetar senha',
 };
 
 export const Danger = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Danger.args = {
   variant: 'danger',
-  label: 'Button',
+  label: 'resetar senha',
 };
 
-// export const Secondary = Template.bind({});
-// Secondary.args = {
-//   label: 'Button',
-// };
+export const Disabled = Template.bind({});
+  Disabled.args = {
+      variant: 'primary',
+      disabled: true,
+      label: 'resetar senha',
+};
 
 // export const Large = Template.bind({});
 // Large.args = {
