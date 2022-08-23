@@ -8,9 +8,9 @@ export default {
   title: 'Typografy/Heading',
   component: Heading,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+//   argTypes: {
+//     backgroundColor: { control: 'color' },
+//   },
 } as ComponentMeta<typeof Heading>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -24,12 +24,12 @@ Heading1.args = {
 
 export const Heading2 = Template.bind({})
 Heading2.args = {
-    level: 1,
+    level: 2,
     children: 'Heading 2'
 }
 
 export const Heading3 = Template.bind({})
-Heading1.args = {
+Heading3.args = {
     level: 3,
     children: 'Heading 3'
 }
