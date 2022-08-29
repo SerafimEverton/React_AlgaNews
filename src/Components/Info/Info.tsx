@@ -32,8 +32,9 @@ const InfoWrapper = styled.div`
   justify-content: center;
   background-color: #F3F8FA;
   width: 373px;
+  border: 1px solid rgba(39, 64, 96, 0.1);
   `
-  
+
 const InfoInnerContent = styled.div`
   display: flex;
   gap: 24px;
