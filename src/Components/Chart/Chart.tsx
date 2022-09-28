@@ -1,32 +1,12 @@
+import { transparentize } from 'polished';
 import { Line } from 'react-chartjs-2';
-
-const data = {
-  labels: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun'],
-  datasets: [
-    {
-      label: 'Receitas',
-      data: [500, 400, 600, 100, 800, 20],
-      fill: true,
-      backgroundColor: '#0099ff',
-      borderColor: '#0099ff',
-      borderwidth: 0.5,
-      yAxisID: 'cashflow',
-    },
-    {
-      label: 'Despesas',
-      data: [550, 620, 100, 600, 1000, 430],
-      fill: false,
-      backgroundColor: '#274060',
-      borderColor: '#274060',
-      borderwidth: 0.5,
-      yAxisID: 'cashflow',
-    },
-  ],
-};
+import styled from 'styled-components';
+import NoData from '../NoData/NoData';
+import Heading from '../Typografy/Heading';
 
 const options: Chart.ChartOptions = {
 
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
 
     elements:{
         line:{
@@ -44,10 +24,18 @@ const options: Chart.ChartOptions = {
     },
 
   scales: {
+    xAxes:[
+      {
+        display: true,
+        gridLines: {
+          display: false
+        }
+      }
+  ],
     yAxes: [
       {
         type: 'linear',
-        display: true,
+        display: false,
         position: 'left',
         id: 'cashflow',
       },
@@ -64,17 +52,35 @@ const options: Chart.ChartOptions = {
   },
 };
 
-export interface ChartProps {}
+export interface ChartProps {
+  data: Chart.ChartData
+  title: string
+}
 
-export default function Chart () {
-  return <div>
-{
+export default function Chart ({ data, title }: ChartProps) {
+  return <ChartWrapper style={{ width: 640 }}>
+
+    <div style={{ marginBottom: 3 }}>
+          <Heading level={3}>
+                {title}
+          </Heading>
+
+    </div>
+          data ?
         <Line 
         type= "line"
-        height= {200}
+        height= {2}
+        width= {6}
         data= {data}
         options={options}
         
-        />}
-  </div>
+        /> : <NoData height={139} />
+  </ChartWrapper>
 }
+
+const ChartWrapper = styled.div`
+text-align: center;
+border: 1px solid ${transparentize(0.9, '#274060')};
+padding: 20px;
+
+`
