@@ -16,7 +16,7 @@ const data = {
     {
       label: 'Despesas',
       data: [550, 620, 100, 600, 1000, 430],
-      fill: false,
+      fill: true,
       backgroundColor: '#274060',
       borderColor: '#274060',
       borderwidth: 0.5,

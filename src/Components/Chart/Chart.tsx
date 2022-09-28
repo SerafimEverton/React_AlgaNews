@@ -58,23 +58,25 @@ export interface ChartProps {
 }
 
 export default function Chart ({ data, title }: ChartProps) {
-  return <ChartWrapper style={{ width: 640 }}>
+  return <ChartWrapper style={{ width: 700 }}>
 
-    <div style={{ marginBottom: 3 }}>
+    <div style={{ marginBottom: 16 }}>
           <Heading level={3}>
                 {title}
           </Heading>
 
     </div>
-          data ?
+    {
+        data ?
         <Line 
         type= "line"
-        height= {2}
-        width= {6}
+        height= {139}
+        width= {600}
         data= {data}
         options={options}
         
         /> : <NoData height={139} />
+        }
   </ChartWrapper>
 }
 
