@@ -4,6 +4,16 @@ import CircleChart, { CircleChartProps } from '../Components/CircleChart/CircleC
 export default {
   title: 'Example/CircleChart',
   component: CircleChart,
+
+  argTypes:{
+    progress:{
+      control:{
+        type: 'range',
+        min: 0,
+        max: 100
+      }
+    }
+  }
  
 } as Meta;
 
@@ -11,5 +21,6 @@ const Template: Story<CircleChartProps> = (args) => <CircleChart {...args} />;
 
 export const Default = Template.bind({})
 Default.args = {
-
+progress: 80,
+size: 150
 }
