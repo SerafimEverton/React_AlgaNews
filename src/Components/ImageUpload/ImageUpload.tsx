@@ -48,7 +48,7 @@ function ImageUpload (props: ImageUploadProps){
             {props.label}
             <IU.Input
                 type ='file'
-                onChange = {e=> handleChange}
+                onChange = {handleChange}
             />
         </IU.Label>
     </IU.Wrapper>
