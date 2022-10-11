@@ -1,6 +1,6 @@
 import { mdiAlert } from "@mdi/js";
 import Icon from "@mdi/react";
-import Heading from "./Typography/Heading";
+import Heading from './Typografy/Heading';
 
 export interface ErrorDisplayProps {
   title?: string;
