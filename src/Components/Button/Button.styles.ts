@@ -7,7 +7,7 @@ const COLORS = {
   foreground: '#274060'
 }
 
-const THEME = {
+const THEME: { [key: string]: any } = {
   danger: {
     bg: '#F84735',
     color: '#FFFFFF',
@@ -47,7 +47,7 @@ export const Wrapper = styled.button<{
   variant: 'danger' | 'primary' | 'text'
 }>`
   padding: 6px 8px 4px;
-  border: 1px solid ${p => THEME[p.variant].bg};
+  border: 1px solid ${p => THEME[p.variant].bg} ;
   color: ${p => THEME[p.variant].color};
   background-color: ${p => THEME[p.variant].bg};
   &:hover,
