@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import SessionController, { SessionControllerProps } from '../Components/SessionController';
+import SessionController, { SessionControllerProps } from '../App/Components/SessionController';
 
 export default {
   title: 'Example/SessionController',

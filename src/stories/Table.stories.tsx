@@ -3,7 +3,7 @@ import Icon from '@mdi/react';
 import { Meta } from '@storybook/react';
 import { useMemo } from 'react';
 import { Column, useTable } from 'react-table';
-import Table from '../Components/Table/Table';
+import Table from '../App/Components/Table/Table';
 
 export default {
   title: 'Example/Table',

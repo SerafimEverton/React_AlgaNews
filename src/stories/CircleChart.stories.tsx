@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import CircleChart, { CircleChartProps } from '../Components/CircleChart/CircleChart';
+import CircleChart, { CircleChartProps } from '../App/Components/CircleChart/CircleChart';
 
 export default {
   title: 'Example/CircleChart',

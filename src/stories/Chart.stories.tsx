@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Chart, { ChartProps } from '../Components/Chart/Chart';
+import Chart, { ChartProps } from '../App/Components/Chart/Chart';
 
 const data = {
   labels: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun'],

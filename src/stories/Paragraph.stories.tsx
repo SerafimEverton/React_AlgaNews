@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Paragraph from '../Components/Typografy/Paragraph';
+import Paragraph from '../App/Components/Typografy/Paragraph';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default { 
