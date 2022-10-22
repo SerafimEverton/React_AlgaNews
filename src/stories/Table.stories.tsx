@@ -160,7 +160,7 @@ export function WithoutNoData () {
     []
   )
 
-  const insntace = useTable<Post>({ data, columns })
+  const instance = useTable<Post>({ data, columns })
 
-  return <Table<Post> instance={insntace} />
+  return <Table<Post> instance={instance} />
 }
