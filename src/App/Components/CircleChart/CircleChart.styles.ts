@@ -1,3 +1,4 @@
+import { transparentize } from "polished";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -28,7 +29,7 @@ transition: stroke-dashoffset 850ms ease;
 `
 
 export const CircleBG = styled.circle.attrs({
-fill: '#fff',
+fill: 'none',
 
 })``
 
