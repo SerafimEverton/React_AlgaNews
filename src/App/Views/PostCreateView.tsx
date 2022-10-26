@@ -1,13 +1,12 @@
 import UsePageTitle from "../../Core/Hooks/UsePageTitle"
+import PostForm from "../Features/PostForm"
 import DefaultLayout from "../Layouts/Default"
 
 
-export default function EditorsListView (){
-
-    UsePageTitle('Lista de editores')
+export default function PostCreateView(){
+    UsePageTitle('New Post')
 
     return <DefaultLayout>
-        <EditorsListView />
+        <PostForm />
     </DefaultLayout>
-
 }

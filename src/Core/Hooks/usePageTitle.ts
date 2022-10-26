@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function usePageTitle (title: string) {
+export default function UsePageTitle (title: string) {
   const BASE_TITLE = 'AlgaNews'
   useEffect(() => {
     document.title = `${BASE_TITLE} - ${title}`
