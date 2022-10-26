@@ -1,7 +1,12 @@
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Not_Found from "../../Assets/Not_Found.svg"
 import Button from "../Components/Button/Button"
+
 export default function NotFound404 () {
+
+  const history = useHistory()
+
     return <NotFound404Wrapper>
       <span>
         Oops!
@@ -10,7 +15,10 @@ export default function NotFound404 () {
 
       <img src={Not_Found} alt="Não encontrado" />
 
-      <Button variant='primary' label= "Voltar para a Home" />
+      <Button variant='primary' 
+              label= "Ir para a Home" 
+              onClick={()=> history.replace('/')}
+              />
     </NotFound404Wrapper>
   }
 
@@ -22,6 +30,7 @@ export default function NotFound404 () {
   justify-content: center;
   align-items: center;
   gap: 32px;
+
   span {
     font-size: 72px;
   }
