@@ -4,6 +4,9 @@ import './Core/Imports.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import GlobalStyle from './Core/GlobalStyle';
+import Home from './App/Views/Home.views';
+import NotFound404 from './App/Views/NotFound404.view';
+import EditorsListView from './App/Views/EditorsList.views';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,9 +15,10 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
         <Switch>
-            <Route path={'/home'} exact>
+            <Route path={'/'} exact component={Home} />
+            <Route path='/editores' exact component={EditorsListView} />
                 
-            </Route>
+            <Route component={NotFound404} />
         </Switch>
     </BrowserRouter>
     <GlobalStyle />
