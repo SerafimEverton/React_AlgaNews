@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Tag } from "react-tag-input"
 import styled from "styled-components"
 import countWordsInMarkdown from "../../Core/Utils/CountWordsInMarkdown"
+import InfoButton from "../../Core/Utils/info"
 import Button from "../Components/Button/Button"
 import ImageUpload from "../Components/ImageUpload"
 import Input from "../Components/Inputs/input"
@@ -13,15 +14,21 @@ export default function PostForm () {
   const [tags, setTags] = useState<Tag[]>([])
   const [body, setBody] = useState('')
 
-  return <PostFormWrapper>
+  function handleFormSubmit (e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    InfoButton({
+      title: 'Post salvo com sucesso',
+      description: 'Você acabou de salvar o post'
+    })
+  }
+
+  return <PostFormWrapper onSubmit={handleFormSubmit}>
     <Input
       label="título"
       placeholder="e.g.: Como fiquei rico aprendendo React"
     />
     <ImageUpload label="Thumbnail do post" />
-    <MarkdownEditor 
-        onChange={ setBody }
-    />
+    <MarkdownEditor onChange={setBody} />
     <TagInput
       tags={tags}
       onAdd={tag => setTags([...tags, tag])}
@@ -29,7 +36,10 @@ export default function PostForm () {
       placeholder="Insira as tags deste post"
     />
     <PostFormSubmitWrapper>
-      <WordPriceCounter pricePerWord={0.25} wordsCount={countWordsInMarkdown(body)} />
+      <WordPriceCounter
+        pricePerWord={0.10}
+        wordsCount={countWordsInMarkdown(body)}
+      />
       <Button variant="primary" label="Salvar post" type="submit" />
     </PostFormSubmitWrapper>
   </PostFormWrapper>
@@ -41,7 +51,7 @@ const PostFormWrapper = styled.form`
   gap: 24px;
 `
 
-const PostFormSubmitWrapper = styled.form`
+const PostFormSubmitWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `
