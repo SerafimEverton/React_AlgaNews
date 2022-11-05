@@ -1,4 +1,3 @@
-import './Core/Imports.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './Core/Imports.css';
