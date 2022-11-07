@@ -8,6 +8,7 @@ import Home from './App/Views/Home.views';
 import NotFound404 from './App/Views/NotFound404.view';
 import EditorsListView from './App/Views/EditorsList.views';
 import PostCreateView from './App/Views/PostCreateView';
+import EditorProfileView from './App/Views/EditorsList.views';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/editores" exact component={EditorsListView} />
+        <Route path="/editores/:id" exact component={EditorProfileView} />
         <Route path="/posts/criar" exact component={PostCreateView} />
         <Route component={NotFound404} />
       </Switch>
