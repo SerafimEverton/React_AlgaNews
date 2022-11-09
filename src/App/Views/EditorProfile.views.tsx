@@ -1,8 +1,12 @@
+import ErrorBoundary from "../Components/ErrorBoundary";
+import EditorProfile from "../Features/EditorProfile";
 import DefaultLayout from "../Layouts/Default";
 
 function DefaultLayoutView(){
     return <DefaultLayout>
-        todo: feito
+        <ErrorBoundary>
+            <EditorProfile hidePersonalData />
+        </ErrorBoundary>
     </DefaultLayout>
 }
 

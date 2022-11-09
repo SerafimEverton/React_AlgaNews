@@ -25,15 +25,18 @@ export default function NotFound404 () {
   const NotFound404Wrapper = styled.div`
   
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   gap: 32px;
 
   span {
     font-size: 72px;
   }
+
   h1 {
     font-size: 18px;
     font-weight: 400;

@@ -3,6 +3,7 @@ import ValueDescriptor from "../Components/ValueDescriptor/ValueDescriptor";
 
 export default function UserEarnings(){
     return <UserEarningsWrapper>
+        
         <ValueDescriptor color='primary' description='Ganhos no mês' value={560322.32} isCurrency />
         <ValueDescriptor color='primary' description='Ganhos na semana' value={560322.32} isCurrency />
         <ValueDescriptor color='default' description='Ganhos de sempre' value={560322.32} isCurrency />

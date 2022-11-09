@@ -1,4 +1,5 @@
 import confirm from '../../../Core/Utils/ConfirmButton'
+import InfoButton from '../../../Core/Utils/info'
 import Logo from '../../Components/Logo'
 import NavBar from '../../Components/NavBar.Componets'
 import SessionController from '../../Components/SessionController'
@@ -26,7 +27,13 @@ interface DefaultLayoutProps {
             onLogout={() => {
               confirm({
                 title: 'Voce quer delogar?',
-                onConfirm: () => window.alert('batata'),
+                onConfirm: () => {
+                  InfoButton({
+                    title: 'Você foi deslogado',
+                    description: 'Você será redirecionado para a página de login'
+                  })
+                  console.log('executado')
+                },
                 onCancel: () => window.alert('laranja'),
               })
             }}

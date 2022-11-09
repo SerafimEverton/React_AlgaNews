@@ -39,8 +39,6 @@ padding-right: 32px;
 
 export const Aside = styled.aside`
 
-
-
 `
 export const FeaturedContent = styled.section`
 
