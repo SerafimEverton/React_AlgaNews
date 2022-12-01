@@ -1,7 +1,12 @@
 import styled from "styled-components";
+import { User } from "../../@types/User";
 import Profile from "../Components/Profile";
 
 export default function EditorsList(){
+
+    const editors: User.EditorSummary[]= []
+
+
     return <EditorsListWrapper>
 
     <Profile editorId={0} name='Everton Serafim' description= 'Editor a 8 anos'/>   
