@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { User } from "../../@types/User";
+import { User } from "../../SDK/@types/User";
 import Profile from "../Components/Profile";
 
 export default function EditorsList(){
