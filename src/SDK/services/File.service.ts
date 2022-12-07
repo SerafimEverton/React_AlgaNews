@@ -46,6 +46,8 @@ class FileService extends Service {
         await FileService
             .uploadFileToSignedURL(singendUrl, file)
 
+        return singendUrl.split('?')[0]
+
     }
 }
 
