@@ -1,24 +1,52 @@
 import { File } from "../@types";
 import Service from "../Service";
+import { uuid } from 'uuidv4'
 
+class FileService extends Service {
 
-class FileService extends Service{
+    private static getSignedURL(fileInfo: File.UploadRequestInput) {
+        return this.Http
+            .post<File.UploadRequest>('/upload-requests', fileInfo)
+            .then(this.getData)
+            .then(res => res.uploadSignedUrl)
+    }
 
-static getSignedURL(fileInfo: File.UploadRequestInput){
-    return this.Http
-    .post<File.UploadRequest>('/upload-requests', fileInfo)
-    .then(this.getData)
-    .then(res => res.uploadSignedUrl)
-}
+    private static uploadFileToSignedURL(signedUrl: string, file: File) {
 
-static uploadFileToSignedURL(signedUrl: string, file: File){
+        return this.Http
+            .put<{}>(signedUrl, file, {
+                headers: { 'Content-type': file.type }
+            })
+            .then(this.getData)
 
-return this.Http
-.put<{}>(signedUrl, file, {
-    headers:{'Content-type': file.type}})
-.then(this.getData)
+    }
 
-}
+    private static getFileExtension(fileName: string) {
+
+        const [extension] = fileName.split('.').slice(-1)
+        return extension
+
+    }
+
+    private static generateFileName(extension: string) {
+        return `${uuid()}.${extension}`
+    }
+
+    static async upload(file: File) {
+
+        const extension = this.getFileExtension(File.name)
+        const fileName = this.generateFileName(extension)
+
+        const singendUrl = await FileService
+            .getSignedURL({
+                fileName,
+                contentLength: file.size
+            })
+
+        await FileService
+            .uploadFileToSignedURL(singendUrl, file)
+
+    }
 }
 
 export default FileService
