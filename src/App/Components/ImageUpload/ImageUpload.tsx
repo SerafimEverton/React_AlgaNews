@@ -7,6 +7,7 @@ import * as IU from './ImageUpload.styles'
 
 export interface ImageUploadProps {
     label: string
+    onImageUpload: (imageUrl: string)=> any
 
 }
 
@@ -23,7 +24,7 @@ function ImageUpload(props: ImageUploadProps) {
                 setFilePreview(String(e.target?.result));
 
                const imageURL = await FileService.upload(file)
-               console.log(imageURL)
+               props.onImageUpload(imageURL)
 
             })
 
