@@ -1,30 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import PostService from "../../SDK/services/Post.service";
+import { User } from "../../SDK/@types";
+import UserService from "../../SDK/services/User.service";
 import Profile from "../Components/Profile";
 
-export default function EditorsList(){
+export default function EditorsList() {
+
+    const [editors, setEditors] = useState<User.EditorSummary[]>([])
 
     useEffect(()=> {
-        const post = PostService.getAllPosts({
-            size: 20,
-            page: 2,
-            sort: ['id', 'desc']
-        })
-        console.log(post)
-   }, [])
-
+        UserService
+            .getAllEditors()
+            .then (setEditors) // .then(editors => setEditors(editors))
+    }, [])
 
     return <EditorsListWrapper>
-
-    <Profile editorId={0} name='Everton Serafim' description= 'Editor a 8 anos'/>   
-    <Profile editorId={1} name='Jorge Silva' description= 'Eletricista a 12 anos'/>   
-    <Profile editorId={2} name='Elena Matos' description= 'Logista 26 anos'/>   
-    <Profile editorId={3} name='Gilson Ribeiro' description= 'Artista Plastico a 15 anos'/>   
-    <Profile editorId={4} name='Caludio Soares' description= 'Professor de História a 17 anos'/>   
-    </EditorsListWrapper>
-
+    {
+      editors.map(editor => {
+        return <Profile
+          editorId={editor.id}
+          name={editor.name}
+          description={'Editor há X meses'}
+          avatarUrl={editor.avatarUrls.small}
+        />
+      })
+    }
+  </EditorsListWrapper>
 }
+
+     
 
 const EditorsListWrapper = styled.div`
 
