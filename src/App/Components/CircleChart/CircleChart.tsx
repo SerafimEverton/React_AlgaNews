@@ -56,7 +56,7 @@ export interface CircleChartProps{
 
             <CC.Percentage style={{color: '#09f' }}>
 
-                { props.progress }%
+                { Math.ceil(props.progress) }%
 
             </CC.Percentage>
         </CC.SvgWrapper>
