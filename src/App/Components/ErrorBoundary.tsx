@@ -1,9 +1,10 @@
 import { transparentize } from "polished";
-import React, { Component } from "react";
+import { Component } from "react";
 import ErrorDisplay from "./ErrorDisplay";
 
 interface Props {
-    children?: React.ReactNode
+  component?: string;
+  children: React.ReactNode     
 }
 interface State {
   hasError: boolean;
@@ -12,10 +13,9 @@ interface State {
   }
 }
 
-class ErrorBoundary extends Component <Props, State> {
+class ErrorBoundary extends Component<Props, State> {
   public state: State = {
-    hasError: false,
-
+    hasError: false
   }
 
   public static getDerivedStateFromError(error: Error): State {
@@ -36,6 +36,7 @@ class ErrorBoundary extends Component <Props, State> {
         }}
       >
         <ErrorDisplay
+          title={`Erro ao renderizar ${this.props.component || 'componente'}`}
           message={this.state.error?.message}
         />
       </div>
