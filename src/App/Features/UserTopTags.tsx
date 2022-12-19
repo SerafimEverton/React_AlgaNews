@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import withBoundary from "../../Core/hoc/withBoundary";
 import { Metric } from "../../SDK/@types";
 import MetricService from "../../SDK/services/Metric.service";
 import CircleChart from "../Components/CircleChart";
 
-export default function UserTopTags(){
+function UserTopTags(){
 
     const [topTags, setTopTags] = useState<Metric.EditorTagRatio>([])
 
@@ -48,3 +49,5 @@ display: grid;
 grid-template-columns: repeat(3, 1fr);
 gap: 32px;
 `
+
+export default withBoundary(UserTopTags, 'User Top Tags')

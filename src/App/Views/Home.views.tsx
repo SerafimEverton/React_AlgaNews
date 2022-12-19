@@ -14,25 +14,15 @@ export default function Home () {
 
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center', gap: '32px' }}>
 
-    <ErrorBoundary component={'TopTags'}>
       <UserTopTags />
-      </ErrorBoundary>
-
-      <ErrorBoundary component={'UserEarnings'}>
+     
       <UserEarnings />
-      </ErrorBoundary>
+      
     </div>
-
-    <ErrorBoundary component={'Performance'}>
     
     <UserPerformance />
-
-    </ErrorBoundary>
-
-    <ErrorBoundary component={'Lista de Posts'}>
     
     <PostList />
 
-    </ErrorBoundary>
   </DefaultLayout>
 }
