@@ -7,6 +7,7 @@ import PostService from "../../SDK/services/Post.service"
 import Button from "../Components/Button/Button"
 import ImageUpload from "../Components/ImageUpload"
 import Input from "../Components/Inputs/input"
+import Loading from "../Components/Loading"
 import MarkdownEditor from "../Components/MarkdownEditor"
 import TagInput from "../Components/TagsInput"
 import WordPriceCounter from "../Components/WordPriceCounter"
@@ -17,8 +18,14 @@ export default function PostForm () {
   const [title, setTitle] = useState('')
   const [imageUrl, setImageUrl] = useState('')
 
+  const [publishing, setPublishing] = useState(false)
+
   async function handleFormSubmit (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    try{
+
+      setPublishing(true)
 
     const newPost = {
 
@@ -35,9 +42,19 @@ export default function PostForm () {
       title: 'Post salvo com sucesso',
       description: 'Você acabou de criar o post com id ' + insertedPost.id
     })
+
+    } finally{
+      
+      setPublishing(false)
+
+    }
+
   }
 
   return <PostFormWrapper onSubmit={handleFormSubmit}>
+
+  <Loading show={publishing} />
+
     <Input
       label="título"
       value = {title}
