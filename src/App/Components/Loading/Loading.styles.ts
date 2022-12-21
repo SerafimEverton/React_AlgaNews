@@ -12,7 +12,21 @@ position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(5px);
+
+  animation: .25s pop ease;
   
+  @keyframes pop {
+    from {
+      background-color: rgba(0,0,0,.0);
+      opacity: 0;
+    } to {
+      background-color: rgba(0,0,0,.7);
+      opacity: 1;
+    }
+  }
+
+
   .lds-ring {
     display: inline-block;
     position: relative;
