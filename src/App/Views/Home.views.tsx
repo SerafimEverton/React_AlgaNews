@@ -4,8 +4,6 @@ import UsePageTitle from "../../Core/Hooks/UsePageTitle"
 import UserPerformance from "../Features/UserPerformance"
 import UserTopTags from "../Features/UserTopTags"
 import DefaultLayout from "../Layouts/Default"
-import ErrorBoundary from "../Components/ErrorBoundary"
-
 
 export default function Home () {
   UsePageTitle('Home')
