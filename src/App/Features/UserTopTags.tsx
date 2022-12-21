@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import withBoundary from "../../Core/hoc/withBoundary";
 import { Metric } from "../../SDK/@types";
@@ -18,6 +19,13 @@ function UserTopTags(){
         .then(setTopTags)
         .catch(error => setError(new Error(error.message)))
     }, [])
+
+    if(!topTags.length)
+    return <UserTopTagsWrapper>
+        <Skeleton height={88} circle />
+        <Skeleton height={88} circle />
+        <Skeleton height={88} circle />
+    </UserTopTagsWrapper>    
 
     if(error)
     throw error

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import getEditorDescription from "../../Core/Utils/getEditorDescription";
 import { User } from "../../SDK/@types";
@@ -7,19 +8,26 @@ import Profile from "../Components/Profile";
 
 export default function EditorsList() {
 
-    const [editors, setEditors] = useState<User.EditorSummary[]>([])
+  const [editors, setEditors] = useState<User.EditorSummary[]>([])
 
-    useEffect(()=> {
-        UserService
-            .getAllEditors()
-            .then (setEditors) // .then(editors => setEditors(editors))
-    }, [])
+  useEffect(() => {
+    UserService
+      .getAllEditors()
+      .then(setEditors)
+  }, [])
 
+  if (!editors)
     return <EditorsListWrapper>
+      <Skeleton height={82} />
+      <Skeleton height={82} />
+      <Skeleton height={82} />
+    </EditorsListWrapper>
+
+  return <EditorsListWrapper>
     {
       editors.map(editor => {
         return <Profile
-          key = {editor.id}
+          key={editor.id}
           editorId={editor.id}
           name={editor.name}
           description={getEditorDescription(new Date(editor.createdAt))}
@@ -30,7 +38,7 @@ export default function EditorsList() {
   </EditorsListWrapper>
 }
 
-     
+
 
 const EditorsListWrapper = styled.div`
 

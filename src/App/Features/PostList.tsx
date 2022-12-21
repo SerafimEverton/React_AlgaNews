@@ -2,6 +2,7 @@ import { mdiOpenInNew } from "@mdi/js"
 import Icon from "@mdi/react"
 import { format } from "date-fns"
 import { useEffect, useMemo, useState } from "react"
+import { Skeleton } from "react-loading-skeleton/dist/Skeleton"
 import { Column, useTable } from "react-table"
 import withBoundary from "../../Core/hoc/withBoundary"
 import { Post } from "../../SDK/@types"
@@ -86,6 +87,18 @@ function PostList () {
     columns 
   
   })
+
+  if (!posts)
+    return <div>
+      <Skeleton height={32} />
+      <Skeleton height={40} />
+      <Skeleton height={40} />
+      <Skeleton height={40} />
+      <Skeleton height={40} />
+      <Skeleton height={40} />
+      <Skeleton height={40} />
+      <Skeleton height={40} />
+    </div>
 
   return <Table
     instance={instance}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import withBoundary from "../../Core/hoc/withBoundary";
 import { User } from "../../SDK/@types";
@@ -24,7 +25,12 @@ function UserEarnings(){
               throw error
 
         if(!user)
-        return null
+        return <UserEarningsWrapper style={{height: 123}}>
+          <Skeleton width={150} height={40} />
+          <Skeleton width={150} height={40} />
+          <Skeleton width={150} height={40} />
+          <Skeleton width={150} height={40} />
+        </UserEarningsWrapper>
 
     return <UserEarningsWrapper>
         

@@ -1,5 +1,6 @@
 import { useEffect } from "@storybook/addons"
 import { useState } from "react"
+import Skeleton from "react-loading-skeleton"
 import withBoundary from "../../Core/hoc/withBoundary"
 import transformEditorMonthlyEarningsInfoChartJs from "../../Core/Utils/transformEditorMonthlyEarningsInfoChartJs"
 import MetricService from "../../SDK/services/Metric.service"
@@ -25,7 +26,9 @@ import Chart, { ChartProps } from "../Components/Chart/Chart"
     throw error
 
   if(!editorEarnings)
-  return null
+  return <div>
+    <Skeleton height={227} />
+  </div>
 
   return <Chart
     title="Média de performance nos últimos 12 meses"
@@ -33,4 +36,4 @@ import Chart, { ChartProps } from "../Components/Chart/Chart"
   />
 }
 
-export default withBoundary(UserPerformance, 'UserPerformance')
+export default withBoundary(UserPerformance, 'User Performance')
