@@ -3,7 +3,7 @@ import Icon from "@mdi/react"
 import { format } from "date-fns"
 import { useEffect, useMemo, useState } from "react"
 import { Skeleton } from "react-loading-skeleton/dist/Skeleton"
-import { Column, useTable } from "react-table"
+import { Column, usePagination, useTable } from "react-table"
 import withBoundary from "../../Core/hoc/withBoundary"
 import { Post } from "../../SDK/@types"
 import PostService from "../../SDK/services/Post.service"
@@ -84,9 +84,15 @@ function PostList () {
 
   const instance = useTable<Post.Summary>({ 
     data: posts?.content || [],
-    columns 
+    columns,
+    manualPagination: true,
+    initialState: {pageIndex: 0},
+    pageCount: posts?.totalPages
+  },
   
-  })
+    usePagination
+  
+  )
 
   if (!posts)
     return <div>

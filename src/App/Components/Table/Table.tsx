@@ -1,5 +1,6 @@
 import { transparentize } from 'polished'
 import { TableInstance } from 'react-table'
+import Button from '../Button/Button'
 import NoData from '../NoData/NoData'
 import * as T from './Table.styles'
 
@@ -10,6 +11,16 @@ export default function Table<T extends Object> ({ instance }: { instance: Table
     prepareRow,
     headerGroups,
     rows,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    state: {
+      pageIndex,
+    }
   } = instance
 
   return (
@@ -54,6 +65,43 @@ export default function Table<T extends Object> ({ instance }: { instance: Table
           <NoData height = {360} />
           </div>
         }
+
+        <T.TablePagination>
+          <Button
+          variant={'primary'}
+          label={'Primeira Pagina'}
+          onClick={()=> gotoPage(0)}
+          disabled={!canPreviousPage}
+          />
+
+          <Button
+          variant={'primary'}
+          label={'Pagina anterior'}
+          onClick={previousPage}
+          disabled={!canPreviousPage}
+          />
+
+          <Button
+          variant={'primary'}
+          label={'Próxima pagina'}
+          onClick={nextPage}
+          disabled={!canNextPage}
+          />
+
+          <Button
+          variant={'primary'}
+          label={'Ultima pagina'}
+          onClick={()=> gotoPage(pageCount - 1)}
+          disabled={!canNextPage}
+          />
+
+          <span>
+            Página {pageIndex + 1} de {pageOptions.length}
+          </span>
+
+        </T.TablePagination>
+
+
       </>
 
   )

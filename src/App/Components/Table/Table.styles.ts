@@ -44,3 +44,10 @@ font-size: 12px;
 font-weight: 500;
 padding: 0 8px;
 `
+
+export const TablePagination =styled.div`
+
+display: flex;
+gap: 8px;
+
+`
