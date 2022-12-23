@@ -7,6 +7,7 @@ import { Column, usePagination, useTable } from "react-table"
 import withBoundary from "../../Core/hoc/withBoundary"
 import { Post } from "../../SDK/@types"
 import PostService from "../../SDK/services/Post.service"
+import Loading from "../Components/Loading"
 import Table from "../Components/Table/Table"
 
 function PostList () {
@@ -15,17 +16,26 @@ function PostList () {
 
   const [error, setError] = useState<Error>()
 
+  const [page, setPage] = useState(0)
+
+  const [loading, setLoading] = useState(false)
+
+
  useEffect(()=>{
+
+  setLoading(true)
+
   PostService
   .getAllPosts({
-    page: 0,
+    page,
     size: 7,
     showAll: true,
     sort:['createdAt', 'desc']
   })
   .then(setPosts)
   .catch(error => setError(new Error(error.message)))
- }, [])
+  .finally(()=>{setLoading(false)})
+ }, [page])
 
   if(error)
     throw error
@@ -106,9 +116,17 @@ function PostList () {
       <Skeleton height={40} />
     </div>
 
-  return <Table
+  return <> 
+  
+  <Loading show={loading}/>
+  
+  <Table
     instance={instance}
+    onPaginate={setPage}
+
   />
+
+  </>
 }
 
 export default withBoundary(PostList, 'Post List')

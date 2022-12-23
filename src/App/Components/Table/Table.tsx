@@ -1,10 +1,23 @@
 import { transparentize } from 'polished'
+import { useEffect } from 'react'
 import { TableInstance } from 'react-table'
 import Button from '../Button/Button'
 import NoData from '../NoData/NoData'
 import * as T from './Table.styles'
 
-export default function Table<T extends Object> ({ instance }: { instance: TableInstance<T> }) {
+interface TableProps<T extends Object>{
+  
+  instance: TableInstance<T>
+  onPaginate?: (newPage: number)=> any
+}
+
+export default function Table<T extends Object> ({ 
+  
+  instance,
+  onPaginate
+
+
+}: TableProps<T>) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -22,6 +35,11 @@ export default function Table<T extends Object> ({ instance }: { instance: Table
       pageIndex,
     }
   } = instance
+
+  useEffect(()=>{
+    onPaginate &&
+        onPaginate(pageIndex)
+  }, [ pageIndex, onPaginate])
 
   return (
     <>
