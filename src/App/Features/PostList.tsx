@@ -2,6 +2,7 @@ import { mdiOpenInNew } from "@mdi/js";
 import Icon from "@mdi/react";
 import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
+import { wrap } from "module";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useMemo } from "react";
@@ -11,6 +12,7 @@ import modal from '../../Core/Utils/modal'
 import { Post } from "../../SDK/@types";
 import PostService from "../../SDK/services/Post.service";
 import Loading from "../Components/Loading";
+import PostTitleAnchor from "../Components/PostTitleAnchor";
 import Table from "../Components/Table/Table";
 import PostPreview from "./PostPreview";
 
@@ -55,6 +57,8 @@ export default function PostList() {
               display: "flex",
               gap: 8,
               alignItems: "center",
+              maxWidth: 270,
+
             }}
           >
             <img
@@ -64,7 +68,8 @@ export default function PostList() {
               alt={props.row.original.editor.name}
               title={props.row.original.editor.name}
             />
-            <a
+            <PostTitleAnchor
+              title={props.value}
               href={`/posts/${props.row.original.id}`}
               onClick={(e) => {
                 e.preventDefault();
@@ -74,7 +79,7 @@ export default function PostList() {
               }}
             >
               {props.value}
-            </a>
+            </PostTitleAnchor>
           </div>
         ),
       },
