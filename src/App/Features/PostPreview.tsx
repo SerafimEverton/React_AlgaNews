@@ -1,29 +1,97 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import withBoundary from "../../Core/hoc/withBoundary";
+import { Post } from "../../SDK/@types";
+import PostService from "../../SDK/services/Post.service";
+import Button from "../Components/Button/Button";
+import Loading from "../Components/Loading";
 import MarkdownEditor from '../Components/MarkdownEditor';
 
 interface PostPreviewProps {
-  postId: number
+    postId: number
 }
 
-function PostPreview (props: PostPreviewProps) {
-  return <Wrapper>
-    features/PostPreview
-    <MarkdownEditor
-      readOnly
-      value={'ola mundo\n- esta é\n- uma lista'}
-    />
-  </Wrapper>
+function PostPreview(props: PostPreviewProps) {
+    const [post, setPost] = useState<Post.Detailed>()
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+        PostService
+            .getExistingPost(props.postId)
+            .then(setPost)
+            .finally(() => setLoading(false))
+    }, [props.postId])
+
+    if (loading)
+        return <Loading show />
+
+    if (!post)
+        return null
+
+    return <PostPreviewWrapper>
+        <PostPreviewHeading>
+            <PostPreviewTitle>
+                {post.title}
+            </PostPreviewTitle>
+            <PostPreviewActions>
+                <Button
+                    variant={'danger'}
+                    label={'Publicar'}
+                />
+                <Button
+                    variant={'primary'}
+                    label={'Editar'}
+                />
+            </PostPreviewActions>
+        </PostPreviewHeading>
+        <PostPreviewImage
+            src={post.imageUrls.medium}
+        />
+        <PostPreviewContent>
+            <MarkdownEditor
+                readOnly
+                value={post.body}
+            />
+        </PostPreviewContent>
+    </PostPreviewWrapper>
 }
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 655px;
-  background-color: #F3F8FA;
-  border: 1px solid #ccc;
+const PostPreviewWrapper = styled.div`
+  background-color: #f3f8fa;
   padding: 24px;
+  border: 1px solid #ccc;
+  width: 655px;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 6px 6px rgba(0,0,0,.05);
+`
+
+const PostPreviewHeading = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const PostPreviewTitle = styled.h2`
+  font-size: 18px;
+  font-weight: 600;
+`
+
+const PostPreviewActions = styled.div`
+  display: flex;
+  gap: 8px;
+`
+
+const PostPreviewImage = styled.img`
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+`
+
+const PostPreviewContent = styled.div`
 `
 
 export default withBoundary(PostPreview)

@@ -8,11 +8,11 @@ import { useMemo } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Column, usePagination, useTable } from "react-table";
 import modal from '../../Core/Utils/modal'
+import { Post } from "../../SDK/@types";
 import PostService from "../../SDK/services/Post.service";
 import Loading from "../Components/Loading";
 import Table from "../Components/Table/Table";
 import PostPreview from "./PostPreview";
-import {Post} from 
 
 export default function PostList() {
   const [posts, setPosts] = useState<Post.Paginated>();
