@@ -6,11 +6,11 @@ export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTML
   label: string
 }
 
-export default function Button ({ label, variant, ref, ...props }: ButtonProps) {
+export default function Button({ label, variant, ref, ...props }: ButtonProps) {
   return <B.Wrapper
     {...props}
     variant={variant}
   >
-    { label }
+    {label}
   </B.Wrapper>
 }

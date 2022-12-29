@@ -38,10 +38,12 @@ function PostPreview(props: PostPreviewProps) {
                 <Button
                     variant={'danger'}
                     label={'Publicar'}
+                    disabled={post.published}
                 />
                 <Button
                     variant={'primary'}
                     label={'Editar'}
+                    disabled={post.published}
                 />
             </PostPreviewActions>
         </PostPreviewHeading>
