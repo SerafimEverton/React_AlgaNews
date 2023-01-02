@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useHistory } from "react-router-dom"
 import { Tag } from "react-tag-input"
 import styled from "styled-components"
 import countWordsInMarkdown from "../../Core/Utils/CountWordsInMarkdown"
@@ -12,7 +13,10 @@ import MarkdownEditor from "../Components/MarkdownEditor"
 import TagInput from "../Components/TagsInput"
 import WordPriceCounter from "../Components/WordPriceCounter"
 
-export default function PostForm () {
+export default function PostForm() {
+  
+  const history = useHistory()
+
   const [tags, setTags] = useState<Tag[]>([])
   const [body, setBody] = useState('')
   const [title, setTitle] = useState('')
@@ -36,12 +40,15 @@ export default function PostForm () {
 
     }
 
-    const insertedPost = await PostService.insertNewPost(newPost)
+      const insertedPost = await PostService
+        .insertNewPost(newPost)
 
     InfoButton({
       title: 'Post salvo com sucesso',
       description: 'Você acabou de criar o post com id ' + insertedPost.id
     })
+      
+      history.push('/')
 
     } finally{
       
@@ -76,7 +83,12 @@ export default function PostForm () {
         pricePerWord={0.10}
         wordsCount={countWordsInMarkdown(body)}
       />
-      <Button variant="primary" label="Salvar post" type="submit" />
+      <Button
+        variant="primary"
+        label="Salvar post"
+        type="submit"
+        disabled= {!title || !imageUrl || !body || !tags.length} 
+      />
     </PostFormSubmitWrapper>
   </PostFormWrapper>
 }
