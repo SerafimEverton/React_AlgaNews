@@ -6,6 +6,7 @@ import EditorsListView from "./Views/EditorsList.views";
 import Home from "./Views/Home.views";
 import NotFound404 from "./Views/NotFound404.view";
 import PostCreateView from "./Views/PostCreateView";
+import PostEditView from "./Views/PostEdit.views";
 
 export default function App(){
 
@@ -28,6 +29,7 @@ return<BrowserRouter>
         <Route path="/editores" exact component={EditorsListView} />
         <Route path="/editores/:id" exact component={EditorProfile} />
         <Route path="/posts/criar" exact component={PostCreateView} />
+        <Route path="/posts/editar/:id" exact component={PostEditView} />
         <Route component={NotFound404} />
       </Switch>
     </BrowserRouter>

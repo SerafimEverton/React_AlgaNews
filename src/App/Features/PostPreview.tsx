@@ -1,5 +1,6 @@
 import { info } from "console";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import withBoundary from "../../Core/hoc/withBoundary";
 import confirm from "../../Core/Utils/ConfirmButton";
@@ -15,6 +16,8 @@ interface PostPreviewProps {
 }
 
 function PostPreview(props: PostPreviewProps) {
+
+    const history = useHistory()
     const [post, setPost] = useState<Post.Detailed>()
     const [loading, setLoading] = useState(false)
 
@@ -69,6 +72,7 @@ function PostPreview(props: PostPreviewProps) {
                     variant={'primary'}
                     label={'Editar'}
                     disabled={post.published}
+                    onClick={() => history.push(`/posts/editar/${props.postId}`) }
                 />
             </PostPreviewActions>
         </PostPreviewHeading>
