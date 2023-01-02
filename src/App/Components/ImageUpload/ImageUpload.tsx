@@ -5,15 +5,17 @@ import FileService from '../../../SDK/services/File.service'
 import Button from '../Button/Button'
 import Loading from '../Loading'
 import * as IU from './ImageUpload.styles'
+import {useEffect} from 'react'
 
 export interface ImageUploadProps {
     label: string
-    onImageUpload: (imageUrl: string)=> any
+    onImageUpload: (imageUrl: string) => any
+    preview?: string
 
 }
 
 function ImageUpload(props: ImageUploadProps) {
-    const [filePreview, setFilePreview] = useState<string | null>(null)
+    const [filePreview, setFilePreview] = useState<string | undefined>(undefined)
 
     const [pushing, setPushing] = useState(false)
 
@@ -44,6 +46,10 @@ function ImageUpload(props: ImageUploadProps) {
 
     }
 
+    useEffect(() => {
+        setFilePreview(props.preview)
+    }, [props.preview])
+
     if (filePreview) {
         return <IU.ImagePreviewWrapper>
             <Loading show={pushing} />
@@ -51,7 +57,7 @@ function ImageUpload(props: ImageUploadProps) {
                 <Button
                     variant={'primary'}
                     label={'Remover Imagem'}
-                    onClick={() => setFilePreview(null)}
+                    onClick={() => setFilePreview(undefined)}
                 />
             </IU.ImagePreview>
         </IU.ImagePreviewWrapper>
